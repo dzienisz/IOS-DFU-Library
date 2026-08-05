@@ -172,7 +172,9 @@ An unofficial library for both iOS and Android that is based on this library is 
 
 ### Expo
 
-An unofficial Expo module for both iOS and Android that is based on this library is available: [expo-nordic-dfu](https://github.com/getquip/expo-nordic-dfu)
+Unofficial Expo modules for both iOS and Android that are based on this library are available: 
+* [expo-nordic-dfu](https://github.com/getquip/expo-nordic-dfu)
+* [react-native-mcu-manager](https://github.com/playerdata/react-native-mcu-manager)
 
 ### Flutter
 
