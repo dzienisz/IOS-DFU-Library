@@ -44,6 +44,6 @@
 
 ## nrfutil
 
-To create ZIP packages use nrfutil tool (https://github.com/NordicSemiconductor/pc-nrfutil). For Legacy DFU use branch with version 0.5.x.
+To create ZIP packages use [nRF Util](https://www.nordicsemi.com/Products/Development-tools/nRF-Util).
 Each next BL must have higher BL version, therefore it is no possible to update a ZIP that includes a BL more than once and they need to be
 sent in increasing order. To check what's in a ZIP file (decode the init packets in dat files) use 'nrfutil pkg display [file_name.zip]'.

@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NordicDFU: 9191a47b78edbcc36ad37a73accde851951f91fa
+  NordicDFU: a9b14cc3f36c85f9056182d9e8f5ec2ada0d2156
   ZIPFoundation: dfd3d681c4053ff7e2f7350bc4e53b5dba3f5351
 
 PODFILE CHECKSUM: 9a7e01b8ffa6bf429152c8dacc8e138552ed18aa
