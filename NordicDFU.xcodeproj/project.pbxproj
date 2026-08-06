@@ -67,6 +67,8 @@
 		F09DFFFD2B175FE9002F844E /* ZipArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09DFFBA2B175FE9002F844E /* ZipArchive.swift */; };
 		F09DFFFE2B175FE9002F844E /* DFUStreamBin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09DFFBC2B175FE9002F844E /* DFUStreamBin.swift */; };
 		F09DFFFF2B175FE9002F844E /* DFUStreamHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09DFFBD2B175FE9002F844E /* DFUStreamHex.swift */; };
+		F0DA51E03024A42B002B812F /* SecureDFUObjectGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA51DF3024A42B002B812F /* SecureDFUObjectGeometryTests.swift */; };
+		F0DA51E23024A480002B812F /* SecureDFUObjectGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DA51E13024A480002B812F /* SecureDFUObjectGeometry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +96,7 @@
 		F09D00452B176A4C002F844E /* Hex2BinConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hex2BinConverterTests.swift; sourceTree = "<group>"; };
 		F09D00592B176D29002F844E /* NordicDFU.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = NordicDFU.xctestplan; sourceTree = "<group>"; };
 		F09D00612B178437002F844E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
-		F09D00AC2B189634002F844E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = file; name = PrivacyInfo.xcprivacy; path = Library/Assets/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
+		F09D00AC2B189634002F844E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = Library/Assets/PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		F09DFFA62B175F50002F844E /* NordicDFU.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NordicDFU.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F09DFFB62B175FE9002F844E /* SoftdeviceBootloaderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoftdeviceBootloaderInfo.swift; sourceTree = "<group>"; };
 		F09DFFB72B175FE9002F844E /* Manifest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
@@ -141,6 +143,8 @@
 		F09DFFF12B175FE9002F844E /* DFUPeripheralSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFUPeripheralSelector.swift; sourceTree = "<group>"; };
 		F09DFFF22B175FE9002F844E /* DFUServiceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFUServiceDelegate.swift; sourceTree = "<group>"; };
 		F09DFFF32B175FE9002F844E /* DFUServiceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DFUServiceController.swift; sourceTree = "<group>"; };
+		F0DA51DF3024A42B002B812F /* SecureDFUObjectGeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDFUObjectGeometryTests.swift; sourceTree = "<group>"; };
+		F0DA51E13024A480002B812F /* SecureDFUObjectGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureDFUObjectGeometry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 			children = (
 				F09D003A2B176A4C002F844E /* TestFirmwares */,
 				F09D00452B176A4C002F844E /* Hex2BinConverterTests.swift */,
+				F0DA51DF3024A42B002B812F /* SecureDFUObjectGeometryTests.swift */,
 			);
 			path = Tests;
 			sourceTree = SOURCE_ROOT;
@@ -331,6 +336,7 @@
 			children = (
 				F09DFFCA2B175FE9002F844E /* SecureDFUExecutor.swift */,
 				F09DFFCB2B175FE9002F844E /* SecureDFUServiceInitiator.swift */,
+				F0DA51E13024A480002B812F /* SecureDFUObjectGeometry.swift */,
 			);
 			path = DFU;
 			sourceTree = "<group>";
@@ -572,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F09D00512B176A4C002F844E /* Hex2BinConverterTests.swift in Sources */,
+				F0DA51E03024A42B002B812F /* SecureDFUObjectGeometryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +620,7 @@
 				F09D00062B175FE9002F844E /* LoggerDelegate.swift in Sources */,
 				F09DFFFC2B175FE9002F844E /* Data.swift in Sources */,
 				F09D00002B175FE9002F844E /* DFUStream.swift in Sources */,
+				F0DA51E23024A480002B812F /* SecureDFUObjectGeometry.swift in Sources */,
 				F09D00212B175FE9002F844E /* LegacyDFUService.swift in Sources */,
 				F09D00202B175FE9002F844E /* LegacyDFUPeripheralDelegate.swift in Sources */,
 				F09D000F2B175FE9002F844E /* DFUExecutor.swift in Sources */,
