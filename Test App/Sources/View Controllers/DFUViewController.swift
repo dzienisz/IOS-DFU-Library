@@ -208,11 +208,11 @@ class DFUViewController: UIViewController, CBCentralManagerDelegate, DFUServiceD
         dfuInitiator.dataObjectPreparationDelay = 0.4 // sec
         
         // Uncomment if you don't want resume feature in Secure DFU.
-        // See: https://github.com/NordicSemiconductor/IOS-DFU-Library/pull/264
+        // See: https://github.com/nordicsemi/IOS-DFU-Library/pull/264
         // dfuInitiator.disableResume = true
         
         // Uncomment only if Legacy DFU is us using address+1 in bootloader mode.
-        // See: https://github.com/NordicSemiconductor/Android-DFU-Library/issues/262#issuecomment-665493850
+        // See: https://github.com/nordicsemi/Android-DFU-Library/issues/262#issuecomment-665493850
         // dfuInitiator.forceScanningForNewAddressInLegacyDfu = true
 
         // Here would be a good chance to change the UUIDs to your custom UUIDs

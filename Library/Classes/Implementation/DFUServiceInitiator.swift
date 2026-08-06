@@ -271,7 +271,7 @@ import CoreBluetooth
      
      **It is recommended to keep this flag set to true unless necessary.**
      
-     For more information read [Issue 16](https://github.com/NordicSemiconductor/IOS-nRF-Connect/issues/16).
+     For more information read [Issue 16](https://github.com/nordicsemi/IOS-nRF-Connect/issues/16).
      */
     @objc public var alternativeAdvertisingNameEnabled = true
 

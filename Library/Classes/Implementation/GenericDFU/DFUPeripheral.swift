@@ -201,7 +201,7 @@ internal class BaseDFUPeripheral<TD : BasePeripheralDelegate> : NSObject, BaseDF
         centralManager.delegate = nil
         peripheral?.delegate = nil
         // Peripheral can't be cleared here to make restart() possible.
-        // See https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/issues/269
+        // See https://github.com/nordicsemi/IOS-Pods-DFU-Library/issues/269
         // peripheral = nil
         delegate = nil
     }
@@ -682,7 +682,7 @@ internal class BaseCommonDFUPeripheral<TD : DFUPeripheralDelegate, TS : DFUServi
     func connectOrSwitchToNewPeripheral(after timeout: TimeInterval) {
         // In Legacy DFU the DFU bootloader by default advertises with the
         // same MAC address as the application. However, recent changes in iOS
-        // (see: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/issues/368#issuecomment-619066196)
+        // (see: https://github.com/nordicsemi/IOS-Pods-DFU-Library/issues/368#issuecomment-619066196)
         // made it necessary for the bootloader to change its address.
         // This requires updating the bootloader or the app on the device, as
         // explained in the above-mentioned issue.
