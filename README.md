@@ -168,7 +168,13 @@ Check platform folders for mode details about compatibility for each library.
 
 ### React Native
 
-An unofficial library for both iOS and Android that is based on this library is available for React Native: [react-native-nordic-dfu](https://github.com/Salt-PepperEngineering/react-native-nordic-dfu)
+An unofficial library for both iOS and Android that is based on this library is available for React Native: 
+* [react-native-nordic-dfu](https://github.com/Salt-PepperEngineering/react-native-nordic-dfu)
+
+### Capacitor
+
+A library for both iOS and Android that is based on this library is available for [Capacitor](https://capacitorjs.com): 
+* [nordic-dfu](https://github.com/robsonos/nordic-dfu)
 
 ### Expo
 
@@ -179,12 +185,12 @@ Unofficial Expo modules for both iOS and Android that are based on this library 
 ### Flutter
 
 A library for both iOS and Android that is based on this library is available for Flutter: 
-[nordic_dfu](https://pub.dev/packages/nordic_dfu)
+* [nordic_dfu](https://pub.dev/packages/nordic_dfu)
 
 ### Xamarin
 
 Simple binding library for iOS is available on nuget:
-[Laerdal.Dfu](https://www.nuget.org/packages/Laerdal.Dfu/)
+* [Laerdal.Dfu](https://www.nuget.org/packages/Laerdal.Dfu/)
 
 ---
 
