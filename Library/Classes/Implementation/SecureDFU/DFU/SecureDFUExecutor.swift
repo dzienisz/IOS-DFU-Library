@@ -349,12 +349,7 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
     }
     
     func peripheralDidCreateDataObject() {
-        guard let firmwareRanges = firmwareRanges else {
-            error(.invalidInternalState, didOccurWithMessage:
-                  "Assert firmwareRanges != nil failed")
-            return
-        }
-        logger.i("Data object \(currentRangeIdx + 1)/\(firmwareRanges.count) created")
+        logger.i("Data object \(currentRangeIdx + 1)/\(firmwareRanges!.count) created")
         // For SDK 15.x and 16 the bootloader needs some time before it's ready to receive data.
         // Otherwise, some packets may be discarded and the received checksum will not match.
         if currentRangeIdx == 0 || initiator.dataObjectPreparationDelay > 0 {
@@ -497,12 +492,7 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
      - parameter rangeIdx: Index of a range of the firmware.
      */
     private func createDataObject(_ rangeIdx: Int) {
-        guard let firmwareRanges = firmwareRanges else {
-            error(.invalidInternalState, didOccurWithMessage:
-                  "Assert firmwareRanges != nil failed")
-            return
-        }
-        let currentRange = firmwareRanges[rangeIdx]
+        let currentRange = firmwareRanges![rangeIdx]
         peripheral.createDataObject(withLength: UInt32(currentRange.upperBound - currentRange.lowerBound))
         // -> peripheralDidCreateDataObject() will be called.
     }
@@ -520,17 +510,7 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
                                the range. The offset must be inside the given range.
      */
     private func sendDataObject(_ rangeIdx: Int, from resumeOffset: UInt32? = nil) {
-        guard let firmwareRanges = firmwareRanges else {
-            error(.invalidInternalState, didOccurWithMessage:
-                  "Assert firmwareRanges != nil failed")
-            return
-        }
-        guard firmwareRanges.count > rangeIdx else {
-            error(.invalidInternalState, didOccurWithMessage:
-                  "Assert firmwareRanges.count (\(firmwareRanges.count)) > rangeIdx (\(rangeIdx)) failed")
-            return
-        }
-        var range = firmwareRanges[rangeIdx]
+        var range = firmwareRanges![rangeIdx]
         
         if let resumeOffset = resumeOffset {
             if UInt32(range.lowerBound) == resumeOffset {
