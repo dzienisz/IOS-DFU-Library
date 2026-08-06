@@ -295,7 +295,8 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
         if firmwareRanges == nil {
             // Split firmware into smaller object of at most maxLen bytes, if firmware is bigger
             // than maxLen.
-            firmwareRanges = calculateFirmwareRanges(Int(maxLen))
+            firmwareRanges = SecureDFUObjectGeometry.ranges(dataSize: firmware.data.count,
+                                                            maxObjectLength: Int(maxLen))
             currentRangeIdx = 0
         }
         
@@ -304,13 +305,12 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
         }
         
         if offset > 0 {
-            // Find the index of the object (range) that the reported offset falls into.
-            // Objects are `maxLen` bytes each (the last one may be shorter), so the index
-            // is offset / maxLen. Clamp to the last range: if the peripheral reports it has
-            // already received the whole firmware (offset == data.count), or more than was
-            // sent, the plain division/search would point one past the end and later crash
-            // createDataObject(_:) with an index out of range.
-            currentRangeIdx = min(Int(offset) / Int(maxLen), firmwareRanges!.count - 1)
+            // Map the reported offset onto the object it belongs to. This is clamped to
+            // the last object, so an offset at (or past) the end of the firmware can't
+            // point out of bounds. See SecureDFUObjectGeometry.objectIndex(...).
+            currentRangeIdx = SecureDFUObjectGeometry.objectIndex(forOffset: Int(offset),
+                                                                  maxObjectLength: Int(maxLen),
+                                                                  objectCount: firmwareRanges!.count)
 
             if verifyCRC(for: firmware.data, andPacketOffset: offset, matches: crc) {
                 logger.i("\(offset) bytes of data sent before, CRC match")
@@ -409,38 +409,6 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
     }
     
     /**
-     Calculates the firmware ranges.
-     
-     In Secure DFU the firmware is sent as separate 'objects', where each object is at most
-     'maxLen' long. This method creates a list of ranges that will be used to send data to the
-     peripheral, for example: `0 ..< 4096` and `4096 ..< 5000` in case the firmware
-     was 5000 bytes long.
-     
-     - parameter maxLen: The maximum length of an object.
-     
-     - returns: The array of ranges.
-     */
-    private func calculateFirmwareRanges(_ maxLen: Int) -> [Range<Int>] {
-        var totalLength = firmware.data.count
-        var ranges: [Range<Int>] = []
-        ranges.reserveCapacity((totalLength + maxLen - 1) / maxLen)
-        
-        var partIdx = 0
-        while totalLength > 0 {
-            if totalLength > maxLen {
-                ranges.append(partIdx * maxLen..<partIdx * maxLen + maxLen)
-                totalLength -= maxLen
-            } else {
-                ranges.append(partIdx * maxLen..<partIdx * maxLen + totalLength)
-                totalLength = 0
-            }
-            partIdx += 1
-        }
-        
-        return ranges
-    }
-    
-    /**
      Verifies if the CRC-32 of the data from byte 0 to given offset matches the given CRC value.
      
      - parameter data:   Firmware or Init packet data.
@@ -487,7 +455,7 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
     /**
      Creates the new data object with length equal to the length of the range with given index.
      
-     The ranges were calculated using `calculateFirmwareRanges()`.
+     The ranges were calculated using `SecureDFUObjectGeometry.ranges(...)`.
      
      - parameter rangeIdx: Index of a range of the firmware.
      */
@@ -505,7 +473,7 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
      call this method again, now with the offset parameter equal `nil`.
      
      - parameter rangeIdx:     Index of the range to be sent. The ranges were calculated
-                               using `calculateFirmwareRanges()`.
+                               using `SecureDFUObjectGeometry.ranges(...)`.
      - parameter resumeOffset: If set, this method will send only the part of firmware from
                                the range. The offset must be inside the given range.
      */
@@ -521,7 +489,7 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
             
             // This is a resuming object: send from the resume offset to the end
             // of the current object's range.
-            range = Int(resumeOffset) ..< range.upperBound
+            range = SecureDFUObjectGeometry.resumeRange(of: range, from: Int(resumeOffset))
         }
         
         peripheral.sendNextObject(from: range, of: firmware,
