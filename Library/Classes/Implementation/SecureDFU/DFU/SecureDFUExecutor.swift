@@ -539,9 +539,9 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
                 return
             }
             
-            // This is a resuming object, recalculate location and size.
-            let newLength = range.lowerBound + (range.upperBound - range.lowerBound) - Int(offset)
-            range = Int(resumeOffset) ..< newLength + Int(resumeOffset)
+            // This is a resuming object: send from the resume offset to the end
+            // of the current object's range.
+            range = Int(resumeOffset) ..< range.upperBound
         }
         
         peripheral.sendNextObject(from: range, of: firmware,
