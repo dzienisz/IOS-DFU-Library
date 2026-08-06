@@ -47,7 +47,16 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
     private var initPacketSent  : Bool = false
     private var firmwareSent    : Bool = false
     private var uploadStartTime : CFAbsoluteTime!
-    
+
+    /// A scheduled, cancellable task that sends the next data object after an
+    /// optional preparation delay (see `peripheralDidCreateDataObject()`).
+    ///
+    /// It is held here so that it can be cancelled if the link drops before it
+    /// fires. On reconnection `resetFirmwareRanges()` nulls `firmwareRanges` and
+    /// recomputes `currentRangeIdx`; without cancelling, this task would later run
+    /// against that reset state and crash (nil `firmwareRanges` / stale index).
+    private var dataObjectPreparationTask: DispatchWorkItem?
+
     /// Retry counter in case the peripheral returns invalid CRC.
     private let maxRetryCount = 3
     private var retryCount: Int
@@ -295,15 +304,14 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
         }
         
         if offset > 0 {
-            // Find the current range index.
-            currentRangeIdx = 0
-            for range in firmwareRanges! {
-                if range.contains(Int(offset)) {
-                    break
-                }
-                currentRangeIdx += 1
-            }
-            
+            // Find the index of the object (range) that the reported offset falls into.
+            // Objects are `maxLen` bytes each (the last one may be shorter), so the index
+            // is offset / maxLen. Clamp to the last range: if the peripheral reports it has
+            // already received the whole firmware (offset == data.count), or more than was
+            // sent, the plain division/search would point one past the end and later crash
+            // createDataObject(_:) with an index out of range.
+            currentRangeIdx = min(Int(offset) / Int(maxLen), firmwareRanges!.count - 1)
+
             if verifyCRC(for: firmware.data, andPacketOffset: offset, matches: crc) {
                 logger.i("\(offset) bytes of data sent before, CRC match")
                 // Did we sent the whole firmware?
@@ -352,9 +360,16 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
         if currentRangeIdx == 0 || initiator.dataObjectPreparationDelay > 0 {
             let delay = initiator.dataObjectPreparationDelay > 0 ? initiator.dataObjectPreparationDelay : 0.4
             logger.d("wait(\(Int(delay * 1000)))")
-            initiator.queue.asyncAfter(deadline: .now() + delay) {
-                self.sendDataObject(self.currentRangeIdx) // -> peripheralDidReceiveObject() will be called.
+            // Schedule sending the object as a cancellable task. The range index is
+            // captured now, not read at fire time, so a concurrent reconnection can't
+            // make it send a different object. If the link drops before it fires,
+            // resetFirmwareRanges() cancels it (see dataObjectPreparationTask).
+            let rangeIdx = currentRangeIdx
+            let task = DispatchWorkItem { [weak self] in
+                self?.sendDataObject(rangeIdx) // -> peripheralDidReceiveObject() will be called.
             }
+            dataObjectPreparationTask = task
+            initiator.queue.asyncAfter(deadline: .now() + delay, execute: task)
         } else {
             sendDataObject(currentRangeIdx) // -> peripheralDidReceiveObject() will be called.
         }
@@ -387,6 +402,10 @@ internal class SecureDFUExecutor : DFUExecutor, SecureDFUPeripheralDelegate {
      This method should be called before sending each part of the firmware.
      */
     private func resetFirmwareRanges() {
+        // Cancel a "send next object" task that may have been scheduled before a
+        // reconnection, so it can't run against the state we're about to reset.
+        dataObjectPreparationTask?.cancel()
+        dataObjectPreparationTask = nil
         currentRangeIdx = 0
         firmwareRanges  = nil
         initPacketSent  = false
