@@ -1,7 +1,7 @@
 PODS:
-  - NordicDFU (4.16.0):
-    - ZIPFoundation (= 0.9.19)
-  - ZIPFoundation (0.9.19)
+  - NordicDFU (4.16.1):
+    - ZIPFoundation (= 0.9.20)
+  - ZIPFoundation (0.9.20)
 
 DEPENDENCIES:
   - NordicDFU (from `../`)
@@ -15,8 +15,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NordicDFU: 116a4ec458945889f8e0e71759e03b23c39c3482
-  ZIPFoundation: b8c29ea7ae353b309bc810586181fd073cb3312c
+  NordicDFU: 6a43d9ba6e6e9cf5c926ef2caf8ffe0e954ec87f
+  ZIPFoundation: dfd3d681c4053ff7e2f7350bc4e53b5dba3f5351
 
 PODFILE CHECKSUM: 9a7e01b8ffa6bf429152c8dacc8e138552ed18aa
 
