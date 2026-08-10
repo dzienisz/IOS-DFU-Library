@@ -15,8 +15,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleIcons</key>
-	<dict/>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

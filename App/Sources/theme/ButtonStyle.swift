@@ -30,33 +30,75 @@
 
 import SwiftUI
 
-//Ref: https://swiftuirecipes.com/blog/custom-swiftui-button-with-disabled-and-pressed-state
-
-struct DfuButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        DfuButtonStyleView(configuration: configuration)
-    }
+/// Adaptive glass button styling for iOS 26+, falling back to DfuButtonStyle on earlier systems.
+/// Usage:
+/// - .dfuButton(role: .active)      // current step — prominent
+/// - .dfuButton(role: .secondary)   // previous step — enabled, less emphasis
+/// - .dfuButton(role: .destructive)    // current step - destructive
+public enum DfuButtonRole {
+    case active
+    case secondary
+    case destructive
 }
 
-private extension DfuButtonStyle {
-    
-    struct DfuButtonStyleView: View {
-        @Environment(\.isEnabled) var isEnabled
-        
-        let configuration: DfuButtonStyle.Configuration
-        
-        var body: some View {
-            configuration.label
-                .frame(minWidth: 80)
-                .foregroundColor(.white)
-                .padding(10)
-                .background(
-                    RoundedRectangle(cornerRadius: 30)
-                        .fill(isEnabled ? ThemeColor.buttonEnabledBackground.color : ThemeColor.buttonDisabledBackground.color)
-                )
-                .opacity(configuration.isPressed ? 0.8 : 1.0)
-                .scaleEffect(configuration.isPressed ? 0.98 : 1.0)
+public struct DfuAdaptiveButtonModifier: ViewModifier {
+    @Environment(\.isEnabled) var isEnabled
+    let role: DfuButtonRole
+
+    public func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            switch role {
+            case .active:
+                content
+                    .buttonStyle(.glassProminent)
+            case .secondary:
+                content
+                    .buttonStyle(.glass)
+            case .destructive:
+                content
+                    .tint(ThemeColor.error.color)
+                    .buttonStyle(.glassProminent)
+            }
+        } else {
+            switch role {
+            case .active,
+                 .secondary where !isEnabled:
+                content
+                    .foregroundColor(.white)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30)
+                            .fill(isEnabled ? ThemeColor.buttonEnabledBackground.color : ThemeColor.buttonDisabledBackground.color)
+                  )
+            case .secondary:
+                content
+                    .foregroundColor(.primary)
+                    .padding(10)
+                    .overlay(
+                        Capsule()
+                            .stroke(
+                                isEnabled
+                                    ? ThemeColor.buttonEnabledBackground.color
+                                    : ThemeColor.buttonDisabledBackground.color
+                            )
+                    )
+            case .destructive:
+                content
+                    .foregroundColor(.white)
+                    .padding(10)
+                    .background(
+                        RoundedRectangle(cornerRadius: 30)
+                            .fill(ThemeColor.error.color)
+                  )
+            }
         }
     }
-    
 }
+
+public extension View {
+    /// Apply the DFU adaptive button styling depending on the role and OS version.
+    func dfuButton(role: DfuButtonRole) -> some View {
+        self.modifier(DfuAdaptiveButtonModifier(role: role))
+    }
+}
+

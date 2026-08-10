@@ -46,15 +46,3 @@ enum ThemeColor : String {
         Color(rawValue)
     }
 }
-
-extension View {
-    
-    func circleBackground() -> some View {
-        if Environment(\.isEnabled).wrappedValue {
-            return background(Circle().fill(.blue).frame(width: 40,height: 40))
-        } else {
-            return background(Circle().fill(.gray).frame(width: 40,height: 40))
-        }
-    }
-    
-}

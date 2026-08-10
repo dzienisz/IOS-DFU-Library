@@ -70,12 +70,24 @@ class DfuViewModel : ObservableObject, DFUProgressDelegate, DFUServiceDelegate {
         return progressSection.isRunning()
     }
     
+    func isFileButtonActive() -> Bool {
+        return zipFile == nil
+    }
+    
     func isDeviceButtonDisabled() -> Bool {
         return isFileButtonDisabled() || zipFile == nil
     }
     
+    func isDeviceButtonActive() -> Bool {
+        return zipFile != nil && device == nil
+    }
+    
     func isProgressButtonDisabled() -> Bool {
         return zipFile == nil || device == nil
+    }
+    
+    func isProgressButtonActive() -> Bool {
+        return zipFile != nil && device != nil
     }
     
     func onFileSelected(_ file: ZipFile) {

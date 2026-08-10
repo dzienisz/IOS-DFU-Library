@@ -66,10 +66,12 @@ struct WelcomeScreen: View {
                 
                 Spacer(minLength: 24)
                 
-                Button(DfuStrings.welcomeStart.text) {
+                Button {
                     presentationMode.wrappedValue.dismiss()
-                }
-                .buttonStyle(DfuButtonStyle())
+                } label: {
+                    Text(DfuStrings.welcomeStart.text)
+                        .frame(width: 60)
+                }.dfuButton(role: .active)
             }
             .padding()
         }

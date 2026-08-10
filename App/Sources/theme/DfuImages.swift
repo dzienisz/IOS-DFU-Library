@@ -35,7 +35,7 @@ enum DfuImages : String {
     case error = "x.circle.fill"
     
     case fileUpload = "doc.zipper"
-    case bluetooth = "circle.square.fill"
+    case bluetooth = "cpu"
     case upload = "square.and.arrow.up"
     case launch = "rectangle.portrait.and.arrow.forward"
     

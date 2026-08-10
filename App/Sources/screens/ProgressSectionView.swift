@@ -45,17 +45,23 @@ struct ProgressSectionView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 if viewModel.progressSection.isRunning() {
-                    Button(DfuStrings.abort.rawValue) {
+                    Button {
                         viewModel.abort()
+                    } label: {
+                        Text(DfuStrings.abort.text)
+                            .frame(width: 60)
                     }
-                    .buttonStyle(AbortButtonStyle())
+                    .dfuButton(role: .destructive)
                 } else {
-                    Button(DfuStrings.upload.rawValue) {
+                    Button {
                         viewModel.install()
+                    } label: {
+                        Text(DfuStrings.upload.text)
+                            .frame(width: 60)
                     }
-                    .buttonStyle(DfuButtonStyle())
+                    .dfuButton(role: viewModel.isProgressButtonActive() ? .active : .secondary)
                 }
-            }.padding()
+            }.padding(.leading)
             
             let bootloaderStatus = viewModel.progressSection.bootloaderStatus
             StatusItemView(text: bootloaderStatus.getBootloaderString(), status: bootloaderStatus)
