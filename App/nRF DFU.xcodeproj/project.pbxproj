@@ -43,6 +43,7 @@
 		8DEF031627EB58E100838144 /* DeviceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF031527EB58E100838144 /* DeviceSectionView.swift */; };
 		8DEF031827EB592700838144 /* ProgressSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEF031727EB592700838144 /* ProgressSectionView.swift */; };
 		8DF025AB27F33C710078CA17 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF025AA27F33C710078CA17 /* SettingsView.swift */; };
+		F02BF8A83029EC73009C3BC3 /* Icon.icon in Resources */ = {isa = PBXBuildFile; fileRef = F02BF8A73029EC73009C3BC3 /* Icon.icon */; };
 		F096C4DC2B0FFE0100D2E2DC /* NordicDFU in Frameworks */ = {isa = PBXBuildFile; productRef = F096C4DB2B0FFE0100D2E2DC /* NordicDFU */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		8DEF031527EB58E100838144 /* DeviceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSectionView.swift; sourceTree = "<group>"; };
 		8DEF031727EB592700838144 /* ProgressSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressSectionView.swift; sourceTree = "<group>"; };
 		8DF025AA27F33C710078CA17 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F02BF8A73029EC73009C3BC3 /* Icon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Icon.icon; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				8DEF02E827EB48A400838144 /* ContentView.swift */,
 				8DEF02E627EB48A400838144 /* DfuApp.swift */,
 				8DEF02EA27EB48A400838144 /* Assets.xcassets */,
+				F02BF8A73029EC73009C3BC3 /* Icon.icon */,
 				8D81E08027EC9B4E00CE843C /* bluetooth */,
 				8DEF02EC27EB48A400838144 /* Preview Content */,
 				8D6228C027EDB81A00AE3E1B /* scanner */,
@@ -341,6 +344,7 @@
 			files = (
 				8DEF02EE27EB48A400838144 /* Preview Assets.xcassets in Resources */,
 				8DEF02EB27EB48A400838144 /* Assets.xcassets in Resources */,
+				F02BF8A83029EC73009C3BC3 /* Icon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,7 +544,7 @@
 		8DEF030827EB48A400838144 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Sources/dfuDebug.entitlements;
@@ -579,7 +583,7 @@
 		8DEF030927EB48A400838144 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Sources/dfu.entitlements;
