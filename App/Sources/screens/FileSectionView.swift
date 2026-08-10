@@ -47,13 +47,16 @@ struct FileSectionView: View {
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Button(DfuStrings.select.text) {
+                Button {
                     openFile.toggle()
                     viewModel.clearFileError()
+                } label: {
+                    Text(DfuStrings.select.text)
+                        .frame(width: 60)
                 }
-                .buttonStyle(DfuButtonStyle())
+                .dfuButton(role: viewModel.isFileButtonActive() ? .active : .secondary)
             }
-            .padding()
+            .padding(.leading)
             
             HStack {
                 RoundedRectangle(cornerRadius: 20)

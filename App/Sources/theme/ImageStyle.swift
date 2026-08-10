@@ -41,7 +41,9 @@ struct SectionImage: View {
             .renderingMode(.template)
             .foregroundColor(.white)
             .background(Circle()
-                .fill(isEnabled ? ThemeColor.nordicLake.color : ThemeColor.buttonDisabledBackground.color)
+                .fill(isEnabled ?
+                      ThemeColor.buttonEnabledBackground.color :
+                      ThemeColor.buttonDisabledBackground.color)
                 .frame(width: 40,height: 40))
     }
 }

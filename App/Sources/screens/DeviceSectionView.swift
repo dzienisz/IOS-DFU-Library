@@ -48,10 +48,11 @@ struct DeviceSectionView: View {
                     ScannerView(viewModel: viewModel)
                 } label: {
                     Text(DfuStrings.select.text)
+                        .frame(width: 60)
                 }
-                .buttonStyle(DfuButtonStyle())
+                .dfuButton(role: viewModel.isDeviceButtonActive() ? .active : .secondary)
             }
-            .padding()
+            .padding(.leading)
             
             HStack {
                 RoundedRectangle(cornerRadius: 20)

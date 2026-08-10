@@ -30,7 +30,7 @@
 
 import SwiftUI
 
-private let INFOCENTER_LINK = "https://infocenter.nordicsemi.com/topic/sdk_nrf5_v17.1.0/examples_bootloader.html"
+private let DOC_LINK = "https://docs.nordicsemi.com/r/bundle/nrf5_sdk_v17.1.0/page/examples_bootloader.html"
 
 struct SettingsView: View {
     
@@ -135,7 +135,7 @@ struct SettingsView: View {
             }
             
             Section(DfuStrings.settingsOther.text) {
-                Link(DfuStrings.settingsAboutTitle.text, destination: URL(string: INFOCENTER_LINK)!)
+                Link(DfuStrings.settingsAboutTitle.text, destination: URL(string: DOC_LINK)!)
                 
                 NavigationLink(DfuStrings.settingsWelcome.text) {
                     WelcomeScreen(viewModel: viewModel)

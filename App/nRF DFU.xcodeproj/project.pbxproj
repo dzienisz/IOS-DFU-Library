@@ -21,7 +21,6 @@
 		8D78D11B27FC422700FE0493 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78D11A27FC422700FE0493 /* ThemeColor.swift */; };
 		8D78D11D27FC51E800FE0493 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78D11C27FC51E800FE0493 /* ButtonStyle.swift */; };
 		8D78D11F27FC52A600FE0493 /* ImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78D11E27FC52A600FE0493 /* ImageStyle.swift */; };
-		8D78D12127FC585E00FE0493 /* AbortButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78D12027FC585E00FE0493 /* AbortButtonStyle.swift */; };
 		8D78D12427FC606900FE0493 /* WelcomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78D12327FC606900FE0493 /* WelcomeScreen.swift */; };
 		8D78D12627FC60F300FE0493 /* DfuStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D78D12527FC60F300FE0493 /* DfuStrings.swift */; };
 		8D81E08227EC9B8B00CE843C /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D81E08127EC9B8B00CE843C /* BluetoothManager.swift */; };
@@ -73,7 +72,6 @@
 		8D78D11A27FC422700FE0493 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		8D78D11C27FC51E800FE0493 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		8D78D11E27FC52A600FE0493 /* ImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStyle.swift; sourceTree = "<group>"; };
-		8D78D12027FC585E00FE0493 /* AbortButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbortButtonStyle.swift; sourceTree = "<group>"; };
 		8D78D12327FC606900FE0493 /* WelcomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeScreen.swift; sourceTree = "<group>"; };
 		8D78D12527FC60F300FE0493 /* DfuStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DfuStrings.swift; sourceTree = "<group>"; };
 		8D81E08127EC9B8B00CE843C /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				8D78D11A27FC422700FE0493 /* ThemeColor.swift */,
 				8D78D11C27FC51E800FE0493 /* ButtonStyle.swift */,
 				8D78D11E27FC52A600FE0493 /* ImageStyle.swift */,
-				8D78D12027FC585E00FE0493 /* AbortButtonStyle.swift */,
 				8D78D12527FC60F300FE0493 /* DfuStrings.swift */,
 				8D02F954281FD99B0030D67A /* DfuImages.swift */,
 				8DA4AE192841097C00BFA79E /* DfuIds.swift */,
@@ -373,7 +370,6 @@
 				8D78D11F27FC52A600FE0493 /* ImageStyle.swift in Sources */,
 				8D78D11627FC36A700FE0493 /* StatusItemView.swift in Sources */,
 				8DB222F427F1C399005A4D92 /* ZipFile.swift in Sources */,
-				8D78D12127FC585E00FE0493 /* AbortButtonStyle.swift in Sources */,
 				8D78D12627FC60F300FE0493 /* DfuStrings.swift in Sources */,
 				8D4DEA0D27F4898400C1AD43 /* TextAlertDialog.swift in Sources */,
 				8DB222FE27F1CDFE005A4D92 /* DfuUiError.swift in Sources */,
